@@ -4,54 +4,64 @@ from automation import id
 from Action import Action
 import time
 
-
 class Filter:
     def __init__(self):
         self.action = Action()
-        self.action.click("browser_my_button")
+
+    def tap_filter_buttons(self):
+        self.action.click("filter_button") # 임의의 값
         time.sleep(1)
-        logger.info("tap My browser")
+        logger.info("tap filter button")
 
-        self.action.click("menu_current_project")
-        time.sleep(1)
-        logger.info("tap current project")
-
-
-    # ID는 있으나 찾지를 못하는 경우
     def filter_all_items(self):
-        self.action.click("current_project_filter_button")
-        time.sleep(1)
-        logger.info("tap project filter")
-
+        self.tap_filter_buttons()
         self.action.click("all_item")
         time.sleep(1)
-        logger.info("tap filter 모든 클립")
-
+        logger.info("tap filter 모든 아이템")
 
     def filter_single_clip(self):
-        self.action.click("current_project_filter_button")
-        time.sleep(1)
-        logger.info("tap project filter")
-
+        self.tap_filter_buttons()
         self.action.click("single_clip")
         time.sleep(1)
         logger.info("tap filter 단일 클립")
 
 
     def filter_folder(self):
-        self.action.click("current_project_filter_button")
-        time.sleep(1)
-        logger.info("tap project filter")
-
+        self.tap_filter_buttons()
         self.action.click("folder")
         time.sleep(1)
         logger.info("tap filter 폴더")
 
 
 
+class CurrentProjectFilter(Filter):
+    def __init__(self):
+        self.action = Action()
+
+    def tap_filter_buttons(self):
+        self.action.click("current_project_filter_button")
+        time.sleep(1)
+        logger.info("tap current project filter button")
+
+
+class LibraryFilter(Filter):
+    def __init__(self):
+        self.action = Action()
+        self.action.click("menu_library")
+
+    def tap_filter_buttons(self):
+        self.action.click("library_filter_button")
+        time.sleep(1)
+        logger.info("tap library filter button")
+
+
 
 if __name__ == "__main__":
-    filter = Filter()
-    filter.filter_all_items()
-    filter.filter_single_clip()
-    filter.filter_folder()
+    c_filter = CurrentProjectFilter()
+    c_filter.filter_all_items()
+    c_filter.filter_single_clip()
+    c_filter.filter_folder()
+    l_filter = LibraryFilter()
+    l_filter.filter_all_items()
+    l_filter.filter_single_clip()
+    l_filter.filter_folder()
