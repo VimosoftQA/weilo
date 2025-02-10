@@ -1,23 +1,44 @@
-# 새 폴더를 생성
 # -*- coding: utf-8 -*-
-from automation import logger
-from automation import id
+from automation import logger, error_handler_class
 from Action import Action
 import time
 
+@error_handler_class
 class NewFolder:
     def __init__(self):
         self.action = Action()
-        self.action.click("browser_my_button")
-        time.sleep(1)
-        logger.info("tap My browser")
 
+    def create_new_folder(self):
+        pass
+
+
+# 폴더 생성이 되지 않는다 . . . 왜이럴까
+@error_handler_class
+class CurrentNewFolder(NewFolder):
+    def create_new_folder(self):
         self.action.click("current_project_create_folder_button")
         time.sleep(1)
-        logger.info("create new folder")
+        logger.info("[Browser > MY] tap 'current project create folder'")
+
+@error_handler_class
+class LibraryNewFolder(NewFolder):
+    def create_new_folder(self):
+        self.action.click("menu_library")
+        logger.info("[Browser > MY] tap 'library'")
+        self.action.click("library_create_folder_button")
+        time.sleep(1)
+        logger.info("[Browser > MY] tap 'library create folder'")
+
+
+
+
+
 
 
 if __name__ == "__main__":
-    newFolder = NewFolder()
+    c_new_folder = CurrentNewFolder()
+    c_new_folder.create_new_folder()
+    l_new_folder = LibraryNewFolder()
+    l_new_folder.create_new_folder()
 
 
