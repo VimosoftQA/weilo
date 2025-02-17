@@ -3,6 +3,8 @@ from appium.options.ios import XCUITestOptions
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.common.keys import Keys
 from automation import driver
+import time
+
 
 class Action:
     """
@@ -68,6 +70,25 @@ class Action:
 
     def tap_coordinate(self, X,Y,sec) : 
         driver.tap([(X,Y)],sec)
+
+    def screenshot(self,route):
+        timestamp = time.strftime("%Y%m%d_%H%M%S")
+        screenshot_name = f"screenshot_{route}_{timestamp}"
+        driver.save_screenshot(f'screenshot/{screenshot_name}.png')
+
+
+    # def scroll_by_ios_predicate(driver, text):
+    #     """
+    #     iOS Predicate String을 사용한 스크롤 (iOS 전용)
+    #     :param driver: Appium 드라이버
+    #     :param text: 찾고자 하는 텍스트
+    #     :return: 찾은 요소 또는 None
+    #     """
+    #     try:
+    #         return driver.find_element(AppiumBy.ACCESSIBILITY_ID,
+    #                                    f'label == "{text}" OR name == "{text}" OR value == "{text}"')
+    #     except:
+    #         return None
 
 
 
