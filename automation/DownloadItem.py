@@ -13,9 +13,11 @@ driver.activate_app(os.getenv("APP_NAME"))
 def download_item():
 
     if isConnection:
-        action.click("inspector_download_ic")
+        icon = "inspector_download_ic"
+        coordinate = action.find_element_coordinate(icon)
+        action.click_coordinate(coordinate)
         logger.info("Success to download item")
-        return True
+        return icon , coordinate
     else:
         time.sleep(1)
         action.find("네트워크 연결 상태를 확인하세요")
