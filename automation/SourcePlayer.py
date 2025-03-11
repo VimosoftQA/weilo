@@ -29,7 +29,8 @@ class SourcePlayer:
     def tap_reset_button(self):
         self.action.click("source_player_time_reset_button")
 
-
+    def tap_screenshot(self):
+        self.action.screenshot("Source Player")
 
 if __name__ == "__main__":
     source_player = SourcePlayer()
