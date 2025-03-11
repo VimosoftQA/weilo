@@ -3,11 +3,13 @@ from Action import Action
 import time
 from DownloadItem import download_item
 from RandomChoice import choice_random, find_category
+from SourcePlayer import *
 
 @error_handler_class
 class Audio:
     def __init__(self):
         self.action = Action()
+        self.source_player = SourcePlayer()
 
     def open_audio_browser(self):
         self.action.click("browser_audio_button")
@@ -21,14 +23,6 @@ class Audio:
                 logger.info("[Browser > Audio] close Audio Guide")
         except:
             logger.info("[Browser > Audio] not exist Audio Guide")
-
-    # def open_source_player(self,coordinate : dict):
-    #     X = coordinate.get("x")
-    #     Y = coordinate.get("y")
-    #
-    #     self.action.tap_coordinate(X,Y,sec = 3)
-
-
 
     def close_audio_browser(self):
         self.action.click("browser_audio_button")
@@ -55,7 +49,6 @@ class BGM(Audio):
             logger.info("[Audio > BGM] tap BGM Sub Category")
             for category in categories:
                 self.action.click(category)
-                # print(self.action.find_element_location(category))
                 if category == "browser_new_ic" : category = "NEW"
                 elif category == "browser_recent_ic" : category = "RECENT"
                 elif category == "inspector_bookmark_ic" : category = "BOOKMARK"
@@ -71,27 +64,43 @@ class BGM(Audio):
 
 
     # 아이템 다운로드 후 소스플레이어 재생
-    def download_BGM_items(self, num = 3):
+    def download_BGM_items(self, num = 1 ):
         for _ in range(num):
-            item , coordinate  = download_item()
-            if item:
+            coordinate  = download_item()
+            if coordinate:
                 time.sleep(1)
                 logger.info("[Audio > BGM] download BGM item")
-                self.action.click_coordinate(coordinate)
-                logger.info("[Audio > BGM] play source player")
-
+                return coordinate
             else:
                 time.sleep(1)
                 logger.info("[Audio > BGM] fail to download BGM item")
 
 
+    def play_source_player(self,coordinate):
+        self.action.click_coordinate(coordinate)
+        logger.info("[Audio > BGM] play source player")
+        sourcePlayer = SourcePlayer()
+        time.sleep(1)
+        sourcePlayer.tap_next_frame_button()
+        sourcePlayer.tap_prev_frame_button()
+        sourcePlayer.tap_play_button()
+        sourcePlayer.tap_reset_button()
+        sourcePlayer.tap_play_button()
+        sourcePlayer.tap_screenshot()
+
+
+    def set_bookmark(self):
+        # 사전 조건 : BGM 다운로드가 되어있어야 함
+        self.action.click("inspector_bookmark_ic") # 북마크 추가하기
+        logger.info("[Audio > BGM] set bookmark")
 
 if __name__ == "__main__":
     bgm = BGM()
     # bgm.open_bgm_browser()
     # bgm.close_audio_guide()
-    bgm.tap_BGM_category()
+    # bgm.tap_BGM_category()
     # bgm.tap_BGM_sub_category()
     bgm.random_find_category()
-    coordinate = bgm.download_BGM_items(1)
-    # bgm.open_source_player(coordinate)
+    coordinate = bgm.download_BGM_items()
+    # bgm.play_source_player(coordinate)
+    bgm.set_bookmark()
