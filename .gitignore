@@ -172,3 +172,12 @@ cython_debug/
 
 #data
 WEILO_Accessibility_ID.xlsx
+
+#logs
+logs/
+*.log
+
+*.json
+
+#screenshot
+screenshot/
