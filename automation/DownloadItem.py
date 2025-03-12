@@ -17,7 +17,7 @@ def download_item():
         coordinate = action.find_element_coordinate(icon)
         action.click_coordinate(coordinate)
         logger.info("Success to download item")
-        return icon , coordinate
+        return  coordinate
     else:
         time.sleep(1)
         action.find("네트워크 연결 상태를 확인하세요")
