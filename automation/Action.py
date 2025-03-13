@@ -1,7 +1,9 @@
 from appium import webdriver
 from appium.options.ios import XCUITestOptions
 from appium.webdriver.common.appiumby import AppiumBy
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 from automation import driver
 import time
 
@@ -11,7 +13,8 @@ class Action:
     """
 
     # def __init__(self,driver):
-    #     self.driver = driver
+    #     self.action_chain = ActionChains(driver)
+    action_chain = ActionChains(driver)
 
     def click(self,value):
         driver.find_element(by = AppiumBy.ACCESSIBILITY_ID , value = value).click()
@@ -34,6 +37,11 @@ class Action:
         Y = value.get("y")
         driver.tap([(X,Y)])
 
+    def double_click(self,value):
+        element = driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value=value)
+        params = { 'elementId': element.id, 'count': 2 } # 탭 횟수
+        driver.execute_script('mobile: doubleTap', params)
+
     def find(self,value):
         element = driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value=value)
         return element
@@ -50,14 +58,14 @@ class Action:
         element = driver.find_element(by=AppiumBy.CLASS_NAME, value = value)
         return element
 
-    def double_click(self,value):
-        driver.find_element(by = AppiumBy.ACCESSIBILITY_ID , value = value).double_click()
-
-    def double_click_name(self,value):
-        driver.find_element(by = AppiumBy.NAME , value = value).double_click()
-
-    def double_click_xpath(self,value):
-        driver.find_element(by = AppiumBy.XPATH , value = value).double_click()
+    # def double_click(self,value):
+    #     driver.find_element(by = AppiumBy.ACCESSIBILITY_ID , value = value).double_click()
+    #
+    # def double_click_name(self,value):
+    #     driver.find_element(by = AppiumBy.NAME , value = value).double_click()
+    #
+    # def double_click_xpath(self,value):
+    #     driver.find_element(by = AppiumBy.XPATH , value = value).double_click()
 
     def long_press(self,value):
         driver.find_element(by = AppiumBy.ACCESSIBILITY_ID , value = value).long_click()
@@ -81,5 +89,11 @@ class Action:
         return element_location # location이 dictionary 의 형태로 반환됨
 
 
+    def drag_and_drop(self,draggable_id,droppable_id):
+        draggable = driver.find_element(by = AppiumBy.ACCESSIBILITY_ID , value = draggable_id)
+        droppable = driver.find_element(by = AppiumBy.ACCESSIBILITY_ID , value = droppable_id)
+
+        actions = ActionChains(driver)
+        actions.click_and_hold(draggable).pause(1).move_to_element(droppable).perform()
 
 
