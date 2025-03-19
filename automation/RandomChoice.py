@@ -1,23 +1,50 @@
 import random
-from Action import Action
+from Action import *
 from automation import logger, error_handler_class
+import time
 
-def choice_random(lis , n = 1):
-    sampling = random.sample(lis,n)[0]
-    logger.info(f"Choice Random Category : {sampling}")
-    return sampling
+def choice_random(item : dict , n = 1):
+    sampling = random.choice(list(item.keys()))
+    logger.info(f"Choice Random Category : {item.get(sampling)}")
+    return item.get(sampling), sampling #카테고리 명, 카테고리 오리지날이름
 
 
-def find_category(category):  # 랜덤으로 선택된 카테고리를 선택한다.
-    # 원하는 카테고리가 있을 때까지 계속 찾는다.
+def find_category(category_original_name):
     action = Action()
+
+    # 초기 위치로 이동 TODO 초기 위치로 이동을 안한다... 어떻게 해야하지
+    # 페이지에 찾으려는 값이 있으면 발견해서 넘어가기
+    # 페이지에 찾으려는 값이 없으면 new 로 돌아가기
+
     while True:
-        try:
-            if action.find(category):
-                action.click(category)
+        try: # 서브 카테고리명 발견 시 클릭하기
+            if action.find(category_original_name):
+                action.click(category_original_name)
                 break
-        except:
-            action.swipe(120, 134, 58, 134)
+
+        except: # 서브 카테고리명이 보이지 않는 경우
+            action.swipe(200, 134, 469, 134) #일단 맨 처음 NEW 로 이동
+
+            if action.find("browser_new_ic"): # NEW를 찾으면
+                action.click("browser_new_ic")
+                logger.info(f"[Audio > SFX] 현재 서브 카테고리 목록에서 찾을 수 없어 NEW 카테고리로 돌아감")
+                break
+
+
+            # TODO 다시 랜덤으로 선택된 서브 카테고리로 넘어가는 작업은 추후 진행 (굉장히 복잡해짐)
+                # action.swipe(469, 134, 200, 134)
+
+            #     while True: # 다시 새로운
+            #         try:
+            #             if action.find(category_original_name):
+            #                 action.click(category_original_name)
+            #                 break
+            #         except:
+            #             action.swipe(469, 134, 200, 134)
+            #     break
+            # else:
+            #     action.swipe(200, 134, 469, 134)
+
 
 
 if __name__ == '__main__':
