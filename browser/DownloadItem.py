@@ -1,5 +1,5 @@
 import time
-from automation import logger, driver
+from browser import logger, driver
 from Action import Action
 from Network import checkNetwork
 from dotenv import load_dotenv

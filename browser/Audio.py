@@ -1,7 +1,7 @@
 from selenium.common import NoSuchElementException
 from selenium.webdriver.support.expected_conditions import none_of
 
-from automation import logger, error_handler_class
+from browser import logger, error_handler_class
 from Action import *
 import time
 from DownloadItem import download_item

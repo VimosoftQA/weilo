@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from automation import logger
+from browser import logger
 from Action import Action
 import time
 
-from automation.Sort import Sort
+from browser.Sort import Sort
 
 
 #TODO 애플 컴포넌트에 대한 접근성 아이디 추가 후 다시 구현하기

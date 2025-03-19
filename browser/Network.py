@@ -1,4 +1,4 @@
-from automation import driver, logger
+from browser import driver, logger
 from Action import Action
 import time
 

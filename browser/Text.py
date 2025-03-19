@@ -1,4 +1,4 @@
-from automation import logger, error_handler_class
+from browser import logger, error_handler_class
 from Action import Action
 import time
 from DownloadItem import download_item
