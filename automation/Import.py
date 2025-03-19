@@ -3,6 +3,8 @@ from automation import logger
 from Action import Action
 import time
 
+from automation.Sort import Sort
+
 
 #TODO 애플 컴포넌트에 대한 접근성 아이디 추가 후 다시 구현하기
 class Importing:
@@ -26,10 +28,45 @@ class Importing:
 
     def import_by_other_projects(self):
         self.action.click("current_project_import_from_other_project")
+        self.action.click("Cancel")
+        logger.info("[Browser > MY] tap Cancel")
+        self.action.click("current_project_import_from_other_project")
         logger.info("[Browser > MY] tap 'import from other projects'")
-        self.action.click("import_from_other_project_list_project_0") # 가장 첫번째 위치한 폴더 탭
-        self.action.click("Next")
-        #TODO 임의의 프로젝트 탭하기
+        self.action.click("import_from_other_project_sort_button")
+        sort = Sort()
+        sort.sort_by_folders_up()
+        self.action.click("import_from_other_project_sort_button")
+        sort.sort_by_files_up()
+        self.action.click("import_from_other_project_sort_button")
+        sort.sort_by_mixed()
+        self.action.click("import_from_other_project_sort_button")
+        sort.sort_by_name()
+        self.action.click("import_from_other_project_sort_button")
+        sort.sort_by_create_time()
+        self.action.click("import_from_other_project_sort_button")
+        sort.sort_by_edit_time()
+        self.action.click("import_from_other_project_list_project_0") # 가장 첫번째 위치한 프로젝트 탭
+        logger.info("[Browser > MY] tap first project")
+        self.action.click("import_from_other_project_move_button")
+        logger.info("[Browser > MY] tap Next move button")
+
+        # TODO 프로젝트 내부의 아이템 선택 옵션
+        # 새 폴더 생성
+        self.action.click("import_from_other_project_create_folder_button")
+        # logger.info()
+
+        # select 버튼
+        self.action.click("import_from_other_project_select_button")
+        # logger.info("[Browser > MY] tap 'import from other projects'")
+
+        sort.sort_by_name()
+        sort.sort_by_create_time()
+        sort.sort_by_edit_time()
+
+
+        #TODO 프로젝트 내부의 임의의 아이템 중 선택
+
+
         self.action.click("Import")
 
 
@@ -88,6 +125,7 @@ class MultiSelectOption:
 
 if __name__ == "__main__":
     importing = Importing()
-    importing.import_by_files()
-    multiselect = MultiSelectOption()
-    multiselect.tap_item_options_add()
+    importing.import_by_other_projects()
+    # importing.import_by_files()
+    # multiselect = MultiSelectOption()
+    # multiselect.tap_item_options_add()
