@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from automation import logger, error_handler_class
+from browser import logger, error_handler_class
 from Action import Action
 import time
 

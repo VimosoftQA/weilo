@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from automation import logger
+from browser import logger
 from Action import Action
 import time
 

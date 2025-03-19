@@ -1,6 +1,6 @@
 import random
 from Action import *
-from automation import logger, error_handler_class
+from browser import logger, error_handler_class
 import time
 
 def choice_random(item : dict , n = 1):

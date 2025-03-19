@@ -1,6 +1,6 @@
 from Action import Action
 import json
-from automation import logger,driver
+from browser import logger,driver
 import time
 
 
