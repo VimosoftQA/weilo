@@ -65,3 +65,6 @@ class Transition:
         logger.info("[Browser > Transition] screenshot transition double tap")
 
 
+    def close_transition_browser(self):
+        self.action.click("browser_transition_button")
+        logger.info("[Browser > Transition] close Transition Browser")
