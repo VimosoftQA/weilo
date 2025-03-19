@@ -32,7 +32,7 @@ class Action:
         driver.find_element(by = AppiumBy.IOS_CLASS_CHAIN, value = value).click()
         return value
 
-    def click_coordinate(self,value : dict):
+    def click_coordinate(self,value : dict): #{x : n , y : m}
         X = value.get("x")
         Y = value.get("y")
         driver.tap([(X,Y)])
@@ -57,15 +57,6 @@ class Action:
     def find_class_name(self,value):
         element = driver.find_element(by=AppiumBy.CLASS_NAME, value = value)
         return element
-
-    # def double_click(self,value):
-    #     driver.find_element(by = AppiumBy.ACCESSIBILITY_ID , value = value).double_click()
-    #
-    # def double_click_name(self,value):
-    #     driver.find_element(by = AppiumBy.NAME , value = value).double_click()
-    #
-    # def double_click_xpath(self,value):
-    #     driver.find_element(by = AppiumBy.XPATH , value = value).double_click()
 
     def long_press(self,value):
         driver.find_element(by = AppiumBy.ACCESSIBILITY_ID , value = value).long_click()
