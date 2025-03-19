@@ -11,8 +11,6 @@ class NewFolder:
     def create_new_folder(self):
         pass
 
-
-# 폴더 생성이 되지 않는다 . . . 왜이럴까
 @error_handler_class
 class CurrentNewFolder(NewFolder):
     def create_new_folder(self):
