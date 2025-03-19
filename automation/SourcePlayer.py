@@ -7,12 +7,12 @@ class SourcePlayer:
     def __init__(self):
         self.action = Action()
 
-    def tap_prev_frame_button(self , n = 5):
+    def tap_prev_frame_button(self , n = 3):
         for _ in range(n):
             self.action.click("source_player_prev_frame_button")
             logger.info(f"[Source Player] Tap Prev Frame Button")
 
-    def tap_next_frame_button(self , n = 5):
+    def tap_next_frame_button(self , n = 3):
         for _ in range(n):
             self.action.click("source_player_next_frame_button")
             logger.info(f"[Source Player] Tap Next Frame Button")
