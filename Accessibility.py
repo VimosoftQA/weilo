@@ -19,12 +19,15 @@ data_dictionary = dict()
 
 for data in tqdm(all_data):
     if len(data) == 2 :
-        data_dictionary[data[0]] = data[1]
+        data_dictionary[data[1]] = data[0]
 
-print(data_dictionary) #179개
 
-with open('accessibilityID.json', 'w') as f:
-    json.dump(data_dictionary, f, ensure_ascii=False)
+
+if __name__ == "__main__":
+    # print(data_dictionary) #179개
+
+    with open('accessibilityID.json', 'w') as f:
+        json.dump(data_dictionary, f, indent=4, ensure_ascii=False)
 
 
 
