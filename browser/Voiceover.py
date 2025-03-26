@@ -45,10 +45,12 @@ class Voiceover:
         time.sleep(5)
         self.action.click("timeline mic ic")
 
+    def add_to_timeline(self):
+        self.action.click("Add to Timeline")
+        logger.info("[Browser > Voiceover] Add to Timeline")
+        self.action.screenshot("Voiceover Add to Timeline")
 
 
 if __name__ == '__main__':
     voiceover = Voiceover()
     voiceover.tap_voiceover_button()
-    # voiceover.setting_voiceover()
-    # voiceover.rename_voiceover()
