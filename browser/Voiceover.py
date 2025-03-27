@@ -46,7 +46,7 @@ class Voiceover:
         self.action.click("timeline mic ic")
 
     def add_to_timeline(self):
-        self.action.click("Add to Timeline")
+        self.action.click("타임라인에 추가")
         logger.info("[Browser > Voiceover] Add to Timeline")
         self.action.screenshot("Voiceover Add to Timeline")
 
