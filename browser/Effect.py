@@ -104,7 +104,6 @@ class AudioEffect(Effect):
             "package_2" : "효과"
         }
 
-
     def open_audio_effect(self):
         self.action.click("menu_audio_effect")
         logger.info("[Effect > Audio Effect] open Audio Effect")
