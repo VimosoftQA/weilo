@@ -39,17 +39,11 @@ class AdjustmentsAction:
         self.tap_element("Return")  # 가상 키보드에서 return 을 탭
         self.logger.info(f"[Adjustments] enter value : {value} into text field")
 
-    def scroll(self,id):
-        try:
-            element_to_find = self.driver.find_element(by=By.ID, value=id)
-            element_to_find.location_once_scrolled_into_view
-            self.logger.info(f"[Adjustments] scroll to find {id}")
-
-        except Exception as e:
-            print(f"요소를 찾는 데 실패했습니다: {e}")
-
-        finally:
-            self.driver.quit()
+    # 하단에 위치한 옵션까지 자동화 하기 위해 세로로 스크롤
+    def vertical_scroll(self,id,vertical_offset = -100):
+        scroller = self.driver.find_element(by=By.ID, value=id)  #
+        self.action.click_and_hold(scroller).move_by_offset(0, vertical_offset).release().perform()  # 세로로 스크롤하기
+        self.logger.info("[Adjustments] vertical scroll")
 
 class Adjustments:
     def __init__(self):
@@ -101,11 +95,12 @@ class Adjustments:
         self.adjustments_action.input_textfield(f"adjustments_{option}_value_text_field",value)
 
     def adjustments_scoll_next_category(self):
-        id = "adjustments_additional_sharpness_key_frame_iobutton"
-        self.adjustments_action.scroll(id)
+        id = "inspector dash ic"
+        self.adjustments_action.vertical_scroll(id)
 
 if __name__ == "__main__":
-    options = [["light_contrast","light_highlights","light_shadows","light_brightness","color_saturation","color_vibrance","color_temperature","color_tint","color_hue"],
+    options = [["light_contrast","light_highlights","light_shadows","light_brightness"],
+               ["color_saturation","color_vibrance","color_temperature","color_tint","color_hue"],
                ["additional_sharpness"]]
 
     adj = Adjustments()
@@ -121,5 +116,4 @@ if __name__ == "__main__":
             adj.adjustments_input_textfield(opt)
             adj.adjustments_add_keyframe(opt)
             adj.adjustments_remove_keyframe(opt)
-
-
+        adj.adjustments_scoll_next_category()
