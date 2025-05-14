@@ -74,7 +74,7 @@ class Gain:
 
     def close_gain_inspector(self):
         self.gain_action.tap_element("inspector_gain")
-        self.gain_action.logger.info("[Gain] Close Pan Inspector")
+        self.gain_action.logger.info("[Gain] Close Gain Inspector")
 
 
 if __name__ == '__main__':
