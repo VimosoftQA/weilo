@@ -43,8 +43,6 @@ class TransformAction:
         self.action.click_and_hold(scroller).move_by_offset(0, vertical_offset).release().perform()  # 세로로 스크롤하기
         self.logger.info("[Transform] vertical scroll")
 
-
-
 class Transform:
     def __init__(self):
         self.transform_action = TransformAction()
@@ -133,11 +131,11 @@ class Transform:
         self.transform_action.tap_element("transform_scale_x;y_link_button")
         self.transform_action.logger.info("[Transform] scale : turn on link")
 
-    def transform_scale_x_reset_default(self):
+    def transform_scale_X_reset_default(self):
         self.transform_action.tap_element("transform_scale_x;y_default_button")
         self.transform_action.logger.info("[Transform] scale : reset default X")
 
-    def transform_scale_y_reset_default(self):
+    def transform_scale_Y_reset_default(self):
         self.transform_action.tap_element("transform_scale_x;y_linked_default_button")
         self.transform_action.logger.info("[Transform] scale : reset default Y")
 
@@ -258,10 +256,6 @@ class Transform:
         self.transform_action.move_roller("transform_anchor_point_y_infinite_roller",value)
         value = 100
         self.transform_action.move_roller("transform_anchor_point_y_infinite_roller",value)
-
-
-
-
 
 
     def transform_flip_vertical(self):

@@ -10,12 +10,15 @@ class TrackerAction:
         self.action = ActionChains(self.driver)
         self.logger = Inspector.setup_logger()
 
+    # ID로 값 찾기
     def find(self,id):
         self.driver.find_element(by=By.ID, value=id)
 
+    # ID로 값 찾고 탭하기
     def tap_element(self,id):
         self.driver.find_element(By.ID, id).click()
 
+    # 텍스트필드에 값 입력
     def input_textfield(self,id,value):
         text_field = self.driver.find_element(By.ID, id)
         text_field.clear()
@@ -23,13 +26,15 @@ class TrackerAction:
         time.sleep(0.5)
         self.tap_element("Return")
 
+    # 입력한 텍스트 필드 값 리턴해주기
     def return_textfield_value(self):
         textfield = self.driver.find_elements(by=By.CLASS_NAME, value="XCUIElementTypeTextField")
         if textfield:
             value = textfield[0].get_attribute("value")
             return value
 
-    def mover_indicator(self,id,horizontal_offset = -100):
+    # 트래커 인디케이터 이동
+    def move_indicator(self,id,horizontal_offset = -100):
         slider = self.driver.find_element(by=By.ID, value=id)
         self.action.click_and_hold(slider).move_by_offset(horizontal_offset, 0).release().perform()
 
@@ -65,7 +70,7 @@ class Tracker:
     # 트래킹 구간 수정 및 추가하기
     def edit_tracker_section(self,offset= -100):
         self.tracker_action.tap_element("tracker_1_edit_tracker_button")
-        self.tracker_action.mover_indicator("layer_waveform_area_view",offset)
+        self.tracker_action.move_indicator("layer_waveform_area_view",offset)
         self.tracker_action.tap_element("export_button")
         self.tracker_action.logger.info("[Tracker] Edit Tracker Section")
 

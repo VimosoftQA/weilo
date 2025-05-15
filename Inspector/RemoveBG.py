@@ -53,14 +53,17 @@ class RemoveBG:
     def __init__(self):
         self.remove_bg_action = RemoveBGAction()
 
+    # 편집 인스펙터 열기
     def open_edit_insepctor(self):
         self.remove_bg_action.tap_element("edit_button")
         self.remove_bg_action.logger.info("[Inspector] open edit inspector")
 
+    # 배경제거 컨테이너 열기
     def open_remove_bg_container(self):
         self.remove_bg_action.tap_element("inspector_remove_bg_container_view")
         self.remove_bg_action.logger.info("[Inspector] open remove BG container")
 
+    # 배경 제거 컨테이너 닫기
     def close_remove_bg_container(self):
         # 기본 보정 컨테이너가 열려있다는 전제 하에 실행함
         self.remove_bg_action.tap_element("inspector_remove_bg_container_view")
@@ -74,26 +77,31 @@ class RemoveBG:
     def remove_bg_minus_stepper(self):
         self.remove_bg_action.tap_stepper("remove_bg_remove_bg_intensity_minus_button")
 
+    # 배경 제거 기본값으로 리셋
     def remove_bg_reset_default(self):
         self.remove_bg_action.tap_element("remove_bg_remove_bg_intensity_default_button")
         self.remove_bg_action.logger.info(f"[Remove BG] tap default button")
 
+    # 배경 제거 슬라이더 이동
     def remove_bg_move_slider(self):
         value = -100
         self.remove_bg_action.move_slider("remove_bg_remove_bg_intensity_slider_handle",value)
         value = 30
         self.remove_bg_action.move_slider("remove_bg_remove_bg_intensity_slider_handle",value)
 
+    # 배경 제거 텍스트 입력
     def remove_bg_input_textfield(self):
         value = 40
         self.remove_bg_action.input_textfield("remove_bg_remove_bg_intensity_value_text_field",value)
         value = -50
         self.remove_bg_action.input_textfield("remove_bg_remove_bg_intensity_value_text_field",value)
 
+    # 배경 제거 토글 ON
     def remove_bg_turn_on_toggle(self):
         self.remove_bg_action.turn_toggle("remove_bg_remove_bg_toggle_switch")
         self.remove_bg_action.logger.info(f"[Remove BG] turn on remove BG toggle")
 
+    # 배경 제거 토글 OFF
     def remove_bg_turn_off_toggle(self):
         self.remove_bg_action.turn_toggle("remove_bg_remove_bg_toggle_switch")
         self.remove_bg_action.logger.info(f"[Remove BG] turn off remove BG toggle")

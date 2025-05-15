@@ -49,16 +49,18 @@ class Adjustments:
     def __init__(self):
         self.adjustments_action = AdjustmentsAction()
 
+    # 편집 인스펙터 열기
     def open_edit_insepctor(self):
         self.adjustments_action.tap_element("edit_button")
         self.adjustments_action.logger.info("[Inspector] open edit inspector")
 
+    # 기본 보정 컨테이너 열기
     def open_adjustements_container(self):
         self.adjustments_action.tap_element("inspector_adjustments_container_view")
         self.adjustments_action.logger.info("[Inspector] open adjustments container")
 
+    # 기본 보정 컨테이너 닫기
     def close_adjustments_container(self):
-        # 기본 보정 컨테이너가 열려있다는 전제 하에 실행함
         self.adjustments_action.tap_element("inspector_adjustments_container_view")
         self.adjustments_action.logger.info("[Inspector] open adjustments container")
 
@@ -70,30 +72,36 @@ class Adjustments:
     def adjustments_minus_stepper(self,option):
         self.adjustments_action.tap_stepper(f"adjustments_{option}_minus_button")
 
+    # 기본 보정 기본값으로 리셋
     def adjustments_reset_default(self,option):
         self.adjustments_action.tap_element(f"adjustments_{option}_default_button")
         self.adjustments_action.logger.info(f"[Adjustments] {option} default button")
 
+    # 기본 보정 키프레임 추가
     def adjustments_add_keyframe(self,option):
         self.adjustments_action.tap_element(f"adjustments_{option}_key_frame_iobutton")
         self.adjustments_action.logger.info(f"[Adjustments] {option} add keyframe")
 
+    # 기본 보정 키프레임 제거
     def adjustments_remove_keyframe(self,option):
         self.adjustments_action.tap_element(f"adjustments_{option}_key_frame_iobutton")
         self.adjustments_action.logger.info(f"[Adjustments] {option} remove keyframe")
 
+    # 기본 보정 슬라이더 움직이기
     def adjustments_move_slider(self,option):
         value = -40
         self.adjustments_action.move_slider(f"adjustments_{option}_slider_handle",value)
         value = 30
         self.adjustments_action.move_slider(f"adjustments_{option}_slider_handle",value)
 
+    # 기본 보정 텍스트 필드 값 입력하기
     def adjustments_input_textfield(self,option):
         value = 40
         self.adjustments_action.input_textfield(f"adjustments_{option}_value_text_field",value)
         value = -50
         self.adjustments_action.input_textfield(f"adjustments_{option}_value_text_field",value)
 
+    # 기본 보정 카테고리 변경
     def adjustments_scoll_next_category(self):
         id = "inspector dash ic"
         self.adjustments_action.vertical_scroll(id)
