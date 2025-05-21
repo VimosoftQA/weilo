@@ -8,14 +8,12 @@ from bottombar import logger, error_handler_class
 class BottomBar:
     def __init__(self):
         self.action = Action()
-    #
-    # def screenshot(self):
-    #     pass
 
-@error_handler_class
+
 class Copy(BottomBar):
     def __init__(self):
         super().__init__()
+
     def copy_clip(self):
         self.action.click("copy_button")
         logger.info("tap copy button")
@@ -98,6 +96,7 @@ class MoveHere(BottomBar):
 class Delete(BottomBar):
     def __init__(self):
         super().__init__()
+
     def delete_clip(self):
         self.action.click("delete_button")
         self.action.screenshot("Delete Clip")
@@ -108,16 +107,19 @@ class Compound(BottomBar):
     def __init__(self):
         super().__init__()
 
+    # 바텀바 : 컴파운드 클립
     def compound_clip(self):
         self.action.click("compound_button")
         self.action.screenshot("Compound Clip")
         logger.info("tap compound button")
 
+    # 컴파운드 팝업에서 완료 버튼 탭
     def save_compound(self):
         self.action.click("완료")
         self.action.screenshot("Save Compound")
         logger.info("tap save compound button")
 
+    # 컴파운드 팝업에서 취소 버튼 탭
     def cancel_compound(self):
         self.action.click("취소")
         logger.info("tap cancel compound button")
@@ -127,27 +129,18 @@ class SaveClip(BottomBar):
     def __init__(self):
         super().__init__()
 
-    # def create_new_folder(self):
-    #     newfolder = CurrentNewFolder()
-    #     newfolder.create_new_folder() #TODO 로그 내용 변경하기
-    #
-    # def sorting(self):
-    #     sort = Sort()
-    #     sort.sort_by_create_time()
-    #     sort.sort_by_edit_time()
-    #     sort.sort_by_name()
-
-
+    # 바텀바 : 클립 저장
     def save_clip(self):
         self.action.click("save_clip_button")
         logger.info("tap save clip button")
         self.action.click("키보드 가리기")
 
+    # 클립 저장 팝업에서 저장 버튼 탭
     def save(self):
         self.action.click("저장")
         logger.info("tap save clip")
 
-
+    # 클립 저장 팝업에서 취소 버튼 탭
     def cancel(self):
         self.action.click("취소")
         logger.info("tap cancel save clip")
@@ -176,8 +169,6 @@ if __name__ == '__main__':
     compound.compound_clip()
     compound.save_compound()
     save_clip = SaveClip()
-    # save_clip.create_new_folder()
-    # save_clip.sorting()
     save_clip.save_clip()
     save_clip.save()
     delete_compound = Delete()
