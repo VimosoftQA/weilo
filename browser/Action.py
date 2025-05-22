@@ -79,7 +79,6 @@ class Action:
         element_location = driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value=value).location
         return element_location # location이 dictionary 의 형태로 반환됨
 
-
     def drag_and_drop(self,draggable_id,droppable_id):
         draggable = driver.find_element(by = AppiumBy.ACCESSIBILITY_ID , value = draggable_id)
         droppable = driver.find_element(by = AppiumBy.ACCESSIBILITY_ID , value = droppable_id)

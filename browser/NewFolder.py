@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 from browser import logger, error_handler_class
 from Action import Action
 import time

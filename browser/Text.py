@@ -39,23 +39,6 @@ class Text:
         logger.info("[Browser > Text] initialize Text Sub Category")
 
 
-        # all_categories = [["browser_new_ic","기본","인트로","배경","네온 & 금속", "예능"],
-        #                   ["이름표","디자인"]]
-        #
-        # self.action.swipe(58, 134, 419, 134) #TODO 좌표를 쓰지 않고 할 수 있는 방법 찾아보기
-        # logger.info("[Browser > Text] initialize Text Sub Category")
-        #
-        # for categories in all_categories:
-        #     logger.info("[Browser > Text] tap Text Sub Category")
-        #     for category in categories:
-        #         self.action.click(category)
-        #         if category == "browser_new_ic":
-        #             category = "NEW"
-        #         logger.info(f"[Browser > Text] tap Text Sub Category : {category}")
-        #
-        #     self.action.swipe(419, 134, 288, 134)
-        #     time.sleep(1)
-
     def random_find_category_asset(self):
         # 서브 카테고리 탭하기
         logger.info("[Browser > Text] tap Text Sub Category")
@@ -72,15 +55,6 @@ class Text:
                 except:
                     self.action.swipe(419, 134, 350, 134)
                     time.sleep(1)
-
-
-        # # text_categories = ["browser_new_ic","기본","인트로","배경","네온 & 금속","예능","이름표","디자인"]
-        # random_category = choice_random(self.all_categories) #카테고리 랜덤 선택
-        # find_category(random_category)
-        # idx = self.all_categories.index(random_category) + 1
-        # self.action.click(f"asset_{idx}_1")
-        # logger.info(f"[Browser > Text] choose {random_category} asset 1")
-        # time.sleep(1)
 
     def download_Text_items(self, num = 1 ):
         for _ in range(num):
@@ -107,13 +81,11 @@ class Text:
         sourcePlayer.tap_play_button()
         sourcePlayer.tap_screenshot()
 
-
     def text_double_tap(self,value):
         self.action.double_click(value)
         logger.info("[Browser > Text] text double tap")
         self.action.screenshot("text_double_tap")
         logger.info("[Browser > Text] screenshot text double tap")
-
 
     def close_Text_browser(self):
         self.action.click("browser_text_button")

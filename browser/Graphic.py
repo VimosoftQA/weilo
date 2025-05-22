@@ -56,7 +56,7 @@ class Drawing(Graphic):
 
 @error_handler_class
 class Pen(Graphic):
-    # 접근성 아이디 적용이 안되어있음
+
     def open_pen_popup(self):
         self.action.click("shape_select_pen_button")
         logger.info("[Graphic > Pen] open Pen Popup")
@@ -85,6 +85,7 @@ class Pen(Graphic):
 
 @error_handler_class
 class BlankScene(Graphic):
+    # 미구현
     pass
 
 
@@ -92,7 +93,7 @@ class Frame(Graphic):
 
     def __init__(self):
         super.__init__()
-        self.all_categories = { #변경해야함
+        self.all_categories = {
             "package_0" : "NEW",
             "package_1" : "RECENT",
             "package_2" : "BOOKMARK",
@@ -111,8 +112,7 @@ class Frame(Graphic):
         logger.info("[Graphic > Frame] open Frame Browser")
 
     def tap_frame_category(self):
-
-        new_icon_coordinate = self.action.find_element_coordinate("common search ic") # new 아이콘으로 변경되어야함
+        new_icon_coordinate = self.action.find_element_coordinate("common search ic") # 실행이 안될 시 new 아이콘으로 변경
         while True:
             try:
                 if self.action.find_name("package_0"): break
@@ -135,26 +135,8 @@ class Frame(Graphic):
                     self.action.swipe(419, 134, 350, 134)
                     time.sleep(1)
 
-        # all_categories = [["browser_new_ic","browser_recent_ic", "inspector_bookmark_ic","기본","선","필름","Vlog"],
-        #                   ["패션","다이어리","시즌"]]
-
-        # self.action.swipe(58, 134, 419, 134)
-        # logger.info("[Graphic > Frame] initialize Frame Sub Category")
-        #
-        # for categories in all_categories:
-        #     logger.info("[Graphic > Frame] tap Frame Sub Category")
-        #     for category in categories:
-        #         self.action.click(category)
-        #         if category == "browser_new_ic" : category = "NEW"
-        #         elif category == "browser_recent_ic" : category = "RECENT"
-        #         elif category == "inspector_bookmark_ic" : category = "BOOKMARK"
-        #         logger.info(f"[Graphic > Frame] tap Frame Sub Category : {category}")
-        #
-        #     self.action.swipe(419,134,288,134)
-        #     time.sleep(1)
-
     def random_find_category(self):
-        random_category, category_original_name = choice_random(self.all_categories) #카테고리 랜덤 선택
+        random_category, category_original_name = choice_random(self.all_categories)
         find_category(category_original_name)
 
     def play_source_player(self,coordinate):
@@ -170,7 +152,7 @@ class Frame(Graphic):
         sourcePlayer.tap_screenshot()
 
     def set_bookmark(self):
-        self.action.click("inspector_bookmark_ic") # 북마크 추가하기
+        self.action.click("inspector_bookmark_ic")
         logger.info("[Graphic > Frame] set bookmark")
 
 class Sticker(Graphic):
@@ -217,10 +199,8 @@ class Sticker(Graphic):
         logger.info("[Graphic > Sticker] initialize SFX Sub Category")
 
 
-        # 서브 카테고리 탭하기 TODO 탭하는 과정에서 좀 꼬인 거 같은데 나중에 수정하자
         logger.info("[Graphic > Sticker] tap Sticker Sub Category")
         for key, value in self.all_categories.items():
-
             while True:
                 try:
                     if self.action.find(key):
@@ -254,6 +234,7 @@ class Sticker(Graphic):
         self.action.click("inspector_bookmark_ic") # 북마크 추가하기
         logger.info("[Graphic > Sticker] set bookmark")
 
+
 class Particle(Graphic):
     def __init__(self):
         super.__init__()
@@ -272,7 +253,7 @@ class Particle(Graphic):
         logger.info("[Graphic > Particle] open Particle Browser")
 
     def tap_particle_category(self):
-        search_icon_coordinate = self.action.find_element_coordinate("common search ic") # search 가 아닌 다른 걸로 해야함
+        search_icon_coordinate = self.action.find_element_coordinate("common search ic") # 실행이 안될 시 new 아이콘으로 변경
         while True:
             try:
                 if self.action.find_name("package_0"): break
@@ -281,10 +262,8 @@ class Particle(Graphic):
         logger.info("[Graphic > Particle] initialize Particle Sub Category")
 
 
-        # 서브 카테고리 탭하기
         logger.info("[Graphic > Particle] tap Particle Sub Category")
         for key, value in self.all_categories.items():
-
             while True:
                 try:
                     if self.action.find(key):
@@ -296,26 +275,9 @@ class Particle(Graphic):
                 except:
                     self.action.swipe(419, 134, 350, 134)
                     time.sleep(1)
-        # all_categories = [["browser_new_ic","browser_recent_ic", "inspector_bookmark_ic","재미","반짝반짝","사랑"],
-        #                   ["필름","시즌","축제"]]
-        #
-        # self.action.swipe(58, 134, 419, 134)
-        # logger.info("[Graphic > Particle] initialize Particle Sub Category")
-        #
-        # for categories in all_categories:
-        #     logger.info("[Graphic > Particle] tap Particle Sub Category")
-        #     for category in categories:
-        #         self.action.click(category)
-        #         if category == "browser_new_ic" : category = "NEW"
-        #         elif category == "browser_recent_ic" : category = "RECENT"
-        #         elif category == "inspector_bookmark_ic" : category = "BOOKMARK"
-        #         logger.info(f"[Graphic > Particle] tap Particle Sub Category : {category}")
-        #
-        #     self.action.swipe(419,134,288,134)
-        #     time.sleep(1)
 
     def random_find_category(self):
-        random_category, category_original_name = choice_random(self.all_categories) #카테고리 랜덤 선택
+        random_category, category_original_name = choice_random(self.all_categories)
         find_category(category_original_name)
 
     def play_source_player(self,coordinate):
@@ -331,7 +293,7 @@ class Particle(Graphic):
         sourcePlayer.tap_screenshot()
 
     def set_bookmark(self):
-        self.action.click("inspector_bookmark_ic") # 북마크 추가하기
+        self.action.click("inspector_bookmark_ic")
         logger.info("[Graphic > Particle] set bookmark")
 
 class Stock(Graphic):
@@ -360,7 +322,7 @@ class Stock(Graphic):
 
     def tap_stock_category(self):
         # 카테고리 맨 처음으로 돌아가는 코드 (초기화)
-        search_icon_coordinate = self.action.find_element_coordinate("common search ic") # new 버튼으로 교체
+        search_icon_coordinate = self.action.find_element_coordinate("common search ic") # 실행이 안될 시 new 아이콘으로 변경
         while True:
             try:
                 if self.action.find_name("package_0"): break
@@ -369,7 +331,6 @@ class Stock(Graphic):
         logger.info("[Graphic > Stock] initialize Stock Sub Category")
 
 
-        # 서브 카테고리 탭하기 TODO 탭하는 과정에서 좀 꼬인 거 같은데 나중에 수정하자
         logger.info("[Graphic > Stock] tap Stock Sub Category")
         for key, value in self.all_categories.items():
 
@@ -387,7 +348,7 @@ class Stock(Graphic):
 
 
     def random_find_category(self):
-        random_category, category_original_name = choice_random(self.all_categories) #카테고리 랜덤 선택
+        random_category, category_original_name = choice_random(self.all_categories)
         find_category(category_original_name)
 
     def play_source_player(self,coordinate):
@@ -403,7 +364,7 @@ class Stock(Graphic):
         sourcePlayer.tap_screenshot()
 
     def set_bookmark(self):
-        self.action.click("inspector_bookmark_ic") # 북마크 추가하기
+        self.action.click("inspector_bookmark_ic")
         logger.info("[Graphic > Stock] set bookmark")
 
 

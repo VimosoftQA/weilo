@@ -48,17 +48,16 @@ class Transition:
                     self.action.swipe(419, 134, 350, 134)
                     time.sleep(1)
 
-
     def random_find_category_asset(self):
-        random_category = choice_random(self.all_categories) #카테고리 랜덤 선택 (카테고리 명, 카테고리 package 명)
+        random_category = choice_random(self.all_categories)
         if find_category(random_category[1]) == 1 :
             idx = 1
             self.action.click(f"asset_{idx}_1")
-            logger.info(f"[Browser > Transition ] choose NEW asset 1")
+            logger.info(f"[Browser > Transition] choose NEW asset 1")
         else:
             idx = int(random_category[1][-1]) +1
             self.action.click(f"asset_{idx}_1")
-            logger.info(f"[Broswer > Transition ]  choose {random_category[0]} asset 1")
+            logger.info(f"[Broswer > Transition] choose {random_category[0]} asset 1")
         time.sleep(1)
 
     def play_source_player(self):

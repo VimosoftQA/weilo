@@ -49,7 +49,6 @@ class VideoEffect(Effect):
         logger.info("[Effect > Video Effect] initialize Video Effect Sub Category")
 
 
-        # 서브 카테고리 탭하기 TODO 탭하는 과정에서 좀 꼬인 거 같은데 나중에 수정하자
         logger.info("[Effect > Video Effect] tap Video Effect Sub Category")
         for key, value in self.all_categories.items():
             while True:
@@ -67,7 +66,7 @@ class VideoEffect(Effect):
 
 
     def random_find_category_asset(self):
-        random_category = choice_random(self.all_categories) #카테고리 랜덤 선택 (카테고리 명, 카테고리 package 명)
+        random_category = choice_random(self.all_categories)
         if find_category(random_category[1]) == 1 :
             idx = 1
             self.action.click(f"asset_{idx}_1")
@@ -119,7 +118,6 @@ class AudioEffect(Effect):
         logger.info("[Effect > Audio Effect] initialize Audio Effect Sub Category")
 
 
-        # 서브 카테고리 탭하기 TODO 탭하는 과정에서 좀 꼬인 거 같은데 나중에 수정하자
         logger.info("[Effect > Audio Effect] tap Audio Effect Sub Category")
         for key, value in self.all_categories.items():
 
@@ -136,7 +134,7 @@ class AudioEffect(Effect):
                     time.sleep(1)
 
     def random_find_category_asset(self):
-        random_category = choice_random(self.all_categories) #카테고리 랜덤 선택 (카테고리 명, 카테고리 package 명)
+        random_category = choice_random(self.all_categories)
         if find_category(random_category[1]) == 1 :
             idx = 1
             self.action.click(f"asset_{idx}_1")

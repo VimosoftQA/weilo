@@ -12,7 +12,7 @@ def choice_random(item : dict , n = 1):
 def find_category(category_original_name):
     action = Action()
 
-    # 초기 위치로 이동 TODO 초기 위치로 이동을 안한다... 어떻게 해야하지
+    # 초기 위치로 이동
     # 페이지에 찾으려는 값이 있으면 발견해서 넘어가기
     # 페이지에 찾으려는 값이 없으면 new 로 돌아가기
 
@@ -31,24 +31,8 @@ def find_category(category_original_name):
                 break
 
 
-            # TODO 다시 랜덤으로 선택된 서브 카테고리로 넘어가는 작업은 추후 진행 (굉장히 복잡해짐)
-                # action.swipe(469, 134, 200, 134)
-
-            #     while True: # 다시 새로운
-            #         try:
-            #             if action.find(category_original_name):
-            #                 action.click(category_original_name)
-            #                 break
-            #         except:
-            #             action.swipe(469, 134, 200, 134)
-            #     break
-            # else:
-            #     action.swipe(200, 134, 469, 134)
-
-
-
 if __name__ == '__main__':
-    lis =["일상", "Vlog", "카페","키즈 & 동물", "여행", "사랑", "웨딩 & 프로포즈", "예능","광고", "영화","게임", "시즌", "뷰티 & 패션", "파티 & 클럽"]
+    lis = ["일상", "Vlog", "카페","키즈 & 동물", "여행", "사랑", "웨딩 & 프로포즈", "예능","광고", "영화","게임", "시즌", "뷰티 & 패션", "파티 & 클럽"]
 
     pick = choice_random(lis)
     print(pick)

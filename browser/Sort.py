@@ -6,13 +6,6 @@ import time
 class Sort:
     def __init__(self):
         self.action = Action()
-        # self.action.click("browser_my_button")
-        # time.sleep(1)
-        # logger.info("tap My browser")
-        #
-        # self.action.click("menu_current_project")
-        # time.sleep(1)
-        # logger.info("tap current project")
 
     def sort_by_create_time(self):
         self.action.click("current_project_sort_button")

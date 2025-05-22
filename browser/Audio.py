@@ -1,9 +1,3 @@
-from selenium.common import NoSuchElementException
-from selenium.webdriver.support.expected_conditions import none_of
-
-from browser import logger, error_handler_class
-from Action import *
-import time
 from DownloadItem import download_item
 from RandomChoice import choice_random, find_category
 from SourcePlayer import *
@@ -40,17 +34,11 @@ class BGM(Audio):
         self.action.click("menu_bgm")
         logger.info("[Audio > BGM] tap BGM Category")
 
-    # def search_BGM(self):
-    #     self.action.click("common search ic") # 효과음 검색
-    #     logger.info("[Audio > BGM] search BGM")
-    #     #TODO 검색 접근성 아이디 필요함
-
     def tap_BGM_sub_category(self):
         all_categories = [["browser_new_ic", "browser_recent_ic", "inspector_bookmark_ic", "일상", "Vlog", "카페"],
                       ["키즈 & 동물", "여행", "사랑", "웨딩 & 프로포즈"],
                       ["예능","광고", "영화","게임", "시즌", "뷰티 & 패션"],
                       ["파티 & 클럽"]]
-
 
         # TODO 시작 전 초기값으로 돌려주기 -> 검색 아이콘 활용
         # self.action.swipe(115, 134, 419, 134)
@@ -74,6 +62,7 @@ class BGM(Audio):
         BGM_categories = ["일상", "Vlog", "카페","키즈 & 동물", "여행", "사랑", "웨딩 & 프로포즈", "예능","광고", "영화","게임", "시즌", "뷰티 & 패션", "파티 & 클럽"]
         random_category = choice_random(BGM_categories) #카테고리 랜덤 선택
         find_category(random_category)
+
 
 
     # 아이템 다운로드 후 소스플레이어 재생
@@ -104,8 +93,7 @@ class BGM(Audio):
 
 
     def set_bookmark(self):
-        # 사전 조건 : BGM 다운로드가 되어있어야 함
-        self.action.click("inspector_bookmark_ic") # 북마크 추가하기
+        self.action.click("inspector_bookmark_ic")
         logger.info("[Audio > BGM] set bookmark")
 
 
@@ -139,14 +127,9 @@ class SFX(Audio):
         self.action.click("menu_sfx")
         logger.info("[Audio > SFX] tap SFX Category")
 
-    # def search_SFX(self):
-    #     self.action.click("common search ic") # 효과음 검색
-    #     logger.info("[Audio > SFX] search SFX")
-    #     #TODO 검색 접근성 아이디 필요함
-
     def tap_SFX_sub_category(self):
 
-        # 카테고리 맨 처음으로 돌아가는 코드 (초기화)
+        # 카테고리 맨 처음으로 돌아감
         search_icon_coordinate = self.action.find_element_coordinate("common search ic")
         while True:
             try:
@@ -156,7 +139,7 @@ class SFX(Audio):
         logger.info("[Audio > SFX] initialize SFX Sub Category")
 
 
-        # 서브 카테고리 탭하기 TODO 탭하는 과정에서 좀 꼬인 거 같은데 나중에 수정하자
+        # 서브 카테고리 탭하기
         logger.info("[Audio > SFX] tap SFX Sub Category")
         for key, value in self.all_categories.items():
 
@@ -174,8 +157,6 @@ class SFX(Audio):
 
 
     def random_find_category(self):
-        # SFX_categories = ["package_1", "package_2", "package_3", "package_4", "package_5", "package_6", "package_7", "package_8", "package_9","package_10", "package_11","package_12", "package_13", "package_14", "package_15", "package_16"]
-
         random_category, category_original_name = choice_random(self.all_categories) #카테고리 랜덤 선택
         find_category(category_original_name)
 
@@ -206,8 +187,7 @@ class SFX(Audio):
 
 
     def set_bookmark(self):
-        # 사전 조건 : SFX 다운로드가 되어있어야 함
-        self.action.click("inspector_bookmark_ic") # 북마크 추가하기
+        self.action.click("inspector_bookmark_ic")
         logger.info("[Audio > SFX] set bookmark")
 
 

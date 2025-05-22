@@ -6,6 +6,8 @@ from Transition import *
 from Voiceover import *
 
 
+# MY 브라우저를 제외한 모든 웨일로 제공 브라우저 테스트
+
 def AudioBrowser():
 
     audio = Audio()

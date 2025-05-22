@@ -14,15 +14,15 @@ class Importing:
     def import_by_photos(self):
         self.action.click("current_project_import_from_photos_button")
         logger.info("[Browser > MY] tap 'import from photos'")
-        self.action.click("PXGGridLayout-Info") #TODO 범용성이 있는 폴더 및 이름이 필요함
+        self.action.click("PXGGridLayout-Info") # 애플 컴포넌트에 대한 ID 부재로 임의로 값 지정
         self.action.click("Add")
         logger.info("[Browser > MY] add new photo")
 
     def import_by_files(self):
         self.action.click("current_project_import_from_files_button")
         logger.info("[Browser > MY] tap 'import from files'")
-        self.action.click("Carly") # TODO 범용성이 있는 이름으로 변경이 필요함
-        self.action.click("제목 없음, mp4") #TODO 범용성이 있는 이름으로 변경이 필요함
+        self.action.click("Carly") # 자동화 테스트 폴더
+        self.action.click("제목 없음, mp4") # 자동화 테스트 영상
         self.action.click("Open")
         logger.info("[Browser > MY] add new file")
 
@@ -50,11 +50,6 @@ class Importing:
         self.action.click("import_from_other_project_move_button")
         logger.info("[Browser > MY] tap Next move button")
 
-        # TODO 프로젝트 내부의 아이템 선택 옵션
-        # 새 폴더 생성
-        self.action.click("import_from_other_project_create_folder_button")
-        # logger.info()
-
         # select 버튼
         self.action.click("import_from_other_project_select_button")
         # logger.info("[Browser > MY] tap 'import from other projects'")
@@ -64,13 +59,8 @@ class Importing:
         sort.sort_by_edit_time()
 
 
-        #TODO 프로젝트 내부의 임의의 아이템 중 선택
 
-
-        self.action.click("Import")
-
-
-#TODO 접근성 아이디 추가 후 다시 구현해야함
+#TODO 멀티 셀렉 버튼에 접근성 아이디 추가 후 다시 구현 필요
 class MultiSelectOption:
     def __init__(self):
         self.action = Action()
@@ -117,7 +107,7 @@ class MultiSelectOption:
         time.sleep(1)
         logger.info("[Browser > MY] tap 'insert'")
 
-    def tap_single_item_options(self): # 방금 추가한 0번째 아이템의 옵션을 확인한다.
+    def tap_single_item_options(self): # 추가한 첫번째 아이템에 대한 옵션
         self.action.click("current_project_item_0_option_button")
         time.sleep(1)
         logger.info("tap first item options")
