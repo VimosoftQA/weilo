@@ -49,7 +49,7 @@ def error_handler(func):
         try:
             return func(*args, **kwargs)
         except Exception as e:
-            #TODO 에러 메세지 조금 더 상세하게 변경해보기
+            #TODO 에러 메세지 조금 더 상세하게 변경 필요
             logger.error(f"Error in {func.__name__}: {str(e)}")
             raise
     return wrapper

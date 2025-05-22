@@ -1,7 +1,5 @@
 from Action import *
 from bottombar import logger, error_handler_class
-# from browser.NewFolder import *
-# from browser.Sort import *
 
 
 @error_handler_class

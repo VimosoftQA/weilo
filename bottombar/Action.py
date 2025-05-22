@@ -56,9 +56,9 @@ class Action:
         driver.save_screenshot(f'screenshot/{screenshot_name}.png')
 
     def find_element_coordinate(self,value) -> dict:
+        # 임의의 요소의 좌표를 리턴
         element_location = driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value=value).location
         return element_location # location이 dictionary 의 형태로 반환됨
-
 
     def drag_and_drop(self,draggable_id,droppable_id):
         draggable = driver.find_element(by = AppiumBy.ACCESSIBILITY_ID , value = draggable_id)
@@ -66,5 +66,4 @@ class Action:
 
         actions = ActionChains(driver)
         actions.click_and_hold(draggable).pause(1).move_to_element(droppable).perform()
-
 
